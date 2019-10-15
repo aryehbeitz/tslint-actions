@@ -90,7 +90,8 @@ const SeverityAnnotationLevelMap = new Map([
             return linter.getResult();
         }
     })();
-    const annotations = result.failures.slice(0, 50).map((failure) => ({
+    const failures = result.failures.slice(0, 50);
+    const annotations = failures.map((failure) => ({
         path: failure.getFileName(),
         start_line: failure.getStartPosition().getLineAndCharacter().line,
         end_line: failure.getEndPosition().getLineAndCharacter().line,

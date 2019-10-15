@@ -103,7 +103,8 @@ const SeverityAnnotationLevelMap = new Map<RuleSeverity, "warning" | "failure">(
     }
   })();
 
-  const annotations: Octokit.ChecksCreateParamsOutputAnnotations[] = result.failures.slice(0, 50).map((failure) => ({
+  const failures = result.failures.slice(0, 50);
+  const annotations: Octokit.ChecksCreateParamsOutputAnnotations[] = failures.map((failure) => ({
     path: failure.getFileName(),
     start_line: failure.getStartPosition().getLineAndCharacter().line,
     end_line: failure.getEndPosition().getLineAndCharacter().line,
